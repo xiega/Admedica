@@ -93,7 +93,7 @@ export default function SzczepankowoPage() {
               <div className="md:w-1/3 flex flex-col items-center border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8">
                 <p className="text-xs text-gray-400 uppercase font-bold tracking-wider mb-4">Współpracujemy z:</p>
                 <img 
-                  src="/images/diagnostyka.png" 
+                  src="/images/Diagnostyka.png" 
                   alt="Diagnostyka Logo" 
                   className="h-20 object-contain"
                 />
