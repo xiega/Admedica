@@ -18,9 +18,9 @@ export default function Home() {
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
             <div className="h-4 bg-[#21135E]"></div>
             <div className="p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Admedica - Centrum</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Admedica - Szczepankowo</h2>
               <p className="text-gray-500 mb-6 flex items-center">
-                <span className="mr-2 text-xl">📍</span> ul. Główna 1, Miasto
+                <span className="mr-2 text-xl">📍</span> ul. Szczepankowo 94A, Poznań
               </p>
               
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">
@@ -44,9 +44,9 @@ export default function Home() {
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
             <div className="h-4 bg-[#21135E] opacity-80"></div>
             <div className="p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Admedica - Północ</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Admedica - Oś.Bohaterów</h2>
               <p className="text-gray-500 mb-6 flex items-center">
-                <span className="mr-2 text-xl">📍</span> ul. Północna 45, Miasto
+                <span className="mr-2 text-xl">📍</span> ul. os. Bohaterów II Wojny Światowej 29, Poznań
               </p>
               
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 mb-8">

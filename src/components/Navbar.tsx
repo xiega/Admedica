@@ -14,7 +14,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <img 
-                src="/src/images/Logo.png" 
+                src="/images/Logo.png" 
                 alt="Admedica Logo" 
                 className="h-14 w-auto object-contain"
               />
