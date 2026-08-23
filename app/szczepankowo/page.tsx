@@ -68,7 +68,7 @@ export default function SzczepankowoPage() {
               </a>
             </div>
 
-            {/* NOWE: Punkt Pobrań Krwi - Laboratorium */}
+            {/* Punkt Pobrań Krwi - Laboratorium */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-grow text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
@@ -121,6 +121,7 @@ export default function SzczepankowoPage() {
               </div>
             </div>
 
+            {/* E-Recepta Formularz z rozbudowaną klauzulą RODO */}
             <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 overflow-hidden" id="e-recepta">
               <div className="grid md:grid-cols-5">
                 <div className="md:col-span-2 bg-green-50 p-8 flex flex-col justify-center">
@@ -130,7 +131,7 @@ export default function SzczepankowoPage() {
                   <ul className="space-y-3 text-sm text-gray-600">
                     <li className="flex items-start"><span className="text-green-500 mr-2">✓</span> Tylko dla stałych pacjentów POZ.</li>
                     <li className="flex items-start"><span className="text-green-500 mr-2">✓</span> Tylko leki zalecone wcześniej.</li>
-                    <li className="flex items-start"><span className="text-[#21135E] mr-2">🔒</span> Szyfrowane i bezpieczne.</li>
+                    <li className="flex items-start"><span className="text-[#21135E] mr-2">🔒</span> Szyfrowane i bezpieczne (RODO).</li>
                   </ul>
                 </div>
                 
@@ -139,22 +140,35 @@ export default function SzczepankowoPage() {
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">Imię i Nazwisko</label>
-                        <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="Jan Kowalski" />
+                        <input type="text" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="Jan Kowalski" />
                       </div>
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">PESEL</label>
-                        <input type="text" maxLength={11} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="00000000000" />
+                        <input type="text" maxLength={11} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="00000000000" />
                       </div>
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">Numer telefonu</label>
-                      <input type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="123 456 789" />
+                      <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="123 456 789" />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">Nazwy leków i dawkowanie</label>
-                      <textarea rows={4} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition resize-none" placeholder="Np. Euthyrox 50..."></textarea>
+                      <textarea rows={4} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition resize-none" placeholder="Np. Euthyrox 50..."></textarea>
                     </div>
-                    <button type="button" className="w-full bg-[#21135E] text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-md">
+
+                    {/* Profesjonalne zgody RODO i oświadczenia medyczne */}
+                    <div className="space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                      <div className="flex items-start">
+                        <div className="flex items-center h-5 mt-0.5">
+                          <input id="rodo-1" type="checkbox" required className="w-4 h-4 rounded border-gray-300 text-[#21135E] focus:ring-[#21135E]" />
+                        </div>
+                        <label htmlFor="rodo-1" className="ml-3 text-xs text-gray-700 leading-relaxed">
+                          <span className="font-semibold text-gray-900">* Wyrażam zgodę</span> na przetwarzanie moich danych osobowych, w tym szczególnych kategorii danych dotyczących zdrowia (PESEL, historia leczenia, zapotrzebowanie na leki), przez Centrum Medyczne Admedica w celu wystawienia e-recepty. Zostałem(-am) poinformowany(-a) o dobrowolności podania danych oraz prawie dostępu do ich treści i ich poprawiania.
+                        </label>
+                      </div>
+                    </div>
+
+                    <button type="submit" className="w-full bg-[#21135E] text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-md">
                       Wyślij zamówienie na e-Receptę
                     </button>
                   </form>
