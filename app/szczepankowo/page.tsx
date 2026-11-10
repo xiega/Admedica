@@ -121,6 +121,17 @@ export default function SzczepankowoPage() {
               </div>
             </div>
 
+            {/* Szkoła rodzenia */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">🤰 Szkoła rodzenia</h2>
+                <p className="text-gray-600">Opieka położnej od 21. tygodnia ciąży do 2. miesiąca życia dziecka, w ramach NFZ.</p>
+              </div>
+              <Link href="/szkola-rodzenia" className="border-2 border-[#21135E] text-[#21135E] font-bold py-3 px-8 rounded-lg hover:bg-[#21135E] hover:text-white transition whitespace-nowrap">
+                Zobacz plan zajęć
+              </Link>
+            </div>
+
             {/* Recepty online – formularz jest na osobnej stronie /recepty */}
             <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
               <div>

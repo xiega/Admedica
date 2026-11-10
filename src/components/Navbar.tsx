@@ -3,6 +3,7 @@ import Link from 'next/link';
 const links = [
   { href: '/bohaterow', label: 'Bohaterów' },
   { href: '/szczepankowo', label: 'Szczepankowo' },
+  { href: '/szkola-rodzenia', label: 'Szkoła rodzenia' },
 ];
 
 export default function Navbar() {
@@ -21,7 +22,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className="flex items-center justify-center gap-1 sm:gap-2 pb-3 md:pb-0 text-sm font-semibold">
+          <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-2 pb-3 md:pb-0 text-sm font-semibold">
             {links.map((l) => (
               <Link
                 key={l.href}
