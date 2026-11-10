@@ -68,6 +68,16 @@ export default function BohaterowPage() {
 
           {/* Informacje dodatkowe (1/3 szerokości) */}
           <div className="space-y-8">
+            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 p-8">
+              <h3 className="font-bold text-gray-900 mb-3 text-xl">💊 Recepta online</h3>
+              <p className="text-sm text-gray-600 mb-4">
+                Stały pacjent? Przedłuż receptę na leki stałe bez wizyty u lekarza.
+              </p>
+              <Link href="/recepty?placowka=bohaterow" className="block w-full bg-[#21135E] text-white text-center font-bold py-2.5 rounded-lg hover:bg-[#37237F] transition">
+                Zamów receptę
+              </Link>
+            </div>
+
             <div className="bg-[#21135E] rounded-2xl shadow-lg p-8 text-white">
               <h3 className="text-xl font-bold mb-4 flex items-center">
                 <span className="text-2xl mr-2">📍</span> Jak dojechać?

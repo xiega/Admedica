@@ -88,6 +88,24 @@ export default function Home() {
           </Link>
 
         </div>
+
+        {/* Szybki dostęp do recept online */}
+        <div className="max-w-5xl mx-auto mt-8">
+          <Link
+            href="/recepty"
+            className="group flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-2xl shadow-md border-2 border-green-500 p-6 hover:shadow-xl transition-shadow"
+          >
+            <div className="text-center sm:text-left">
+              <p className="text-xl font-bold text-gray-900">💊 Potrzebujesz przedłużyć receptę?</p>
+              <p className="text-gray-600">
+                Dla stałych pacjentów – krótki formularz online, bez wizyty u lekarza.
+              </p>
+            </div>
+            <span className="bg-[#21135E] text-white font-bold py-3 px-6 rounded-lg whitespace-nowrap group-hover:bg-[#37237F] transition-colors">
+              Zamów receptę
+            </span>
+          </Link>
+        </div>
       </section>
     </main>
   );

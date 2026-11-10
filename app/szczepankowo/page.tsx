@@ -121,59 +121,15 @@ export default function SzczepankowoPage() {
               </div>
             </div>
 
-            {/* E-Recepta Formularz z rozbudowaną klauzulą RODO */}
-            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 overflow-hidden" id="e-recepta">
-              <div className="grid md:grid-cols-5">
-                <div className="md:col-span-2 bg-green-50 p-8 flex flex-col justify-center">
-                  <span className="text-4xl mb-4">💊</span>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Zamów e-Receptę</h2>
-                  <p className="text-gray-700 mb-6 font-medium">Szybkie przedłużenie leków stałych bez konieczności wizyty u lekarza.</p>
-                  <ul className="space-y-3 text-sm text-gray-600">
-                    <li className="flex items-start"><span className="text-green-500 mr-2">✓</span> Tylko dla stałych pacjentów POZ.</li>
-                    <li className="flex items-start"><span className="text-green-500 mr-2">✓</span> Tylko leki zalecone wcześniej.</li>
-                    <li className="flex items-start"><span className="text-[#21135E] mr-2">🔒</span> Szyfrowane i bezpieczne (RODO).</li>
-                  </ul>
-                </div>
-                
-                <div className="md:col-span-3 p-8 lg:p-10">
-                  <form className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Imię i Nazwisko</label>
-                        <input type="text" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="Jan Kowalski" />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">PESEL</label>
-                        <input type="text" maxLength={11} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="00000000000" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Numer telefonu</label>
-                      <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="123 456 789" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Nazwy leków i dawkowanie</label>
-                      <textarea rows={4} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition resize-none" placeholder="Np. Euthyrox 50..."></textarea>
-                    </div>
-
-                    {/* Profesjonalne zgody RODO i oświadczenia medyczne */}
-                    <div className="space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
-                      <div className="flex items-start">
-                        <div className="flex items-center h-5 mt-0.5">
-                          <input id="rodo-1" type="checkbox" required className="w-4 h-4 rounded border-gray-300 text-[#21135E] focus:ring-[#21135E]" />
-                        </div>
-                        <label htmlFor="rodo-1" className="ml-3 text-xs text-gray-700 leading-relaxed">
-                          <span className="font-semibold text-gray-900">* Wyrażam zgodę</span> na przetwarzanie moich danych osobowych, w tym szczególnych kategorii danych dotyczących zdrowia (PESEL, historia leczenia, zapotrzebowanie na leki), przez Centrum Medyczne Admedica w celu wystawienia e-recepty. Zostałem(-am) poinformowany(-a) o dobrowolności podania danych oraz prawie dostępu do ich treści i ich poprawiania.
-                        </label>
-                      </div>
-                    </div>
-
-                    <button type="submit" className="w-full bg-[#21135E] text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-md">
-                      Wyślij zamówienie na e-Receptę
-                    </button>
-                  </form>
-                </div>
+            {/* Recepty online – formularz jest na osobnej stronie /recepty */}
+            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">💊 Przedłużenie recepty online</h2>
+                <p className="text-gray-600">Dla stałych pacjentów POZ – leki przyjmowane na stałe, bez wizyty u lekarza.</p>
               </div>
+              <Link href="/recepty?placowka=szczepankowo" className="bg-[#21135E] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap">
+                Zamów receptę
+              </Link>
             </div>
 
           </div>
