@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { sendMail } from "../../../src/lib/mail";
 import { getClientIp, rateLimit } from "../../../src/lib/rateLimit";
 import { encryptJson, LINK_TTL_MS } from "../../../src/lib/security";
+import { dbEnabled, zapiszZgloszenie } from "../../../src/lib/store";
 import {
   PLACOWKI,
   isPlacowka,
@@ -9,8 +10,11 @@ import {
   isValidPhone,
 } from "../../../src/lib/validators";
 
-// Dane z formularza NIE są nigdzie zapisywane ani logowane. Serwer szyfruje je i wysyła
-// do recepcji maila z samym linkiem; odczyt możliwy tylko po zalogowaniu w /recepcja.
+// Dwa tryby:
+//  1) z bazą (RECEPTY_API_URL ustawione): zaszyfrowane zgłoszenie trafia do bazy, a mail (opcjonalny)
+//     jest tylko powiadomieniem bez danych pacjenta,
+//  2) bez bazy: mail do recepcji z zaszyfrowanym linkiem (tak jak wcześniej).
+// W obu trybach PESEL i leki nigdy nie są zapisywane ani logowane jawnym tekstem.
 
 function fail(status: number, error: string) {
   return NextResponse.json({ ok: false, error }, { status });
@@ -32,7 +36,7 @@ export async function POST(req: Request) {
     return fail(400, "Nieprawidłowe dane formularza.");
   }
 
-  // Pułapka na boty: ukryte pole, którego człowiek nie widzi. Udajemy sukces i niczego nie wysyłamy.
+  // Pułapka na boty: ukryte pole, którego człowiek nie widzi. Udajemy sukces i niczego nie zapisujemy.
   if (text(body.website) !== "") return NextResponse.json({ ok: true });
 
   // Czas wypełniania mierzony w przeglądarce (nie zależy od zegara serwera).
@@ -61,38 +65,53 @@ export async function POST(req: Request) {
     (placowka === "bohaterow"
       ? process.env.MAIL_TO_BOHATEROW
       : process.env.MAIL_TO_SZCZEPANKOWO) || process.env.MAIL_TO;
+  const received = new Date().toLocaleString("pl-PL", { timeZone: "Europe/Warsaw" });
 
   try {
-    if (!siteUrl || !to) throw new Error("Brak SITE_URL lub adresu odbiorcy (MAIL_TO)");
+    const token = encryptJson({ v: 1, ts: Date.now(), placowka, imie, pesel, telefon, leki });
 
-    const token = encryptJson({
-      v: 1,
-      ts: Date.now(),
-      placowka,
-      imie,
-      pesel,
-      telefon,
-      leki,
-    });
-    const link = `${siteUrl}/recepcja?d=${token}`;
-    const days = Math.round(LINK_TTL_MS / 86_400_000);
-    const received = new Date().toLocaleString("pl-PL", { timeZone: "Europe/Warsaw" });
+    if (dbEnabled()) {
+      // Zapis do bazy jest najważniejszy – jeśli się nie uda, pacjent dostaje błąd.
+      await zapiszZgloszenie(token, placowka);
 
-    await sendMail({
-      to,
-      subject: `Nowa prośba o receptę – ${PLACOWKI[placowka]}`,
-      text: [
-        "Nowa prośba o przedłużenie recepty.",
-        `Placówka: ${PLACOWKI[placowka]}`,
-        `Otrzymano: ${received}`,
-        "",
-        "Dane pacjenta są zaszyfrowane i nie ma ich w tej wiadomości.",
-        "Aby je zobaczyć, otwórz link i zaloguj się do panelu recepcji:",
-        link,
-        "",
-        `Link jest ważny ${days} dni. Po zrealizowaniu prośby usuń tę wiadomość.`,
-      ].join("\n"),
-    });
+      // Powiadomienie mailowe jest dodatkiem: jego awaria nie unieważnia zapisanego zgłoszenia.
+      if (siteUrl && to) {
+        try {
+          await sendMail({
+            to,
+            subject: `Nowa prośba o receptę – ${PLACOWKI[placowka]}`,
+            text: [
+              "Nowa prośba o przedłużenie recepty.",
+              `Placówka: ${PLACOWKI[placowka]}`,
+              `Otrzymano: ${received}`,
+              "",
+              "Dane pacjenta nie są w tej wiadomości. Zaloguj się do panelu recepcji:",
+              `${siteUrl}/recepcja`,
+            ].join("\n"),
+          });
+        } catch (err) {
+          console.error("[recepta] powiadomienie e-mail:", err instanceof Error ? err.message : "błąd");
+        }
+      }
+    } else {
+      if (!siteUrl || !to) throw new Error("Brak SITE_URL lub adresu odbiorcy (MAIL_TO)");
+      const days = Math.round(LINK_TTL_MS / 86_400_000);
+      await sendMail({
+        to,
+        subject: `Nowa prośba o receptę – ${PLACOWKI[placowka]}`,
+        text: [
+          "Nowa prośba o przedłużenie recepty.",
+          `Placówka: ${PLACOWKI[placowka]}`,
+          `Otrzymano: ${received}`,
+          "",
+          "Dane pacjenta są zaszyfrowane i nie ma ich w tej wiadomości.",
+          "Aby je zobaczyć, otwórz link i zaloguj się do panelu recepcji:",
+          `${siteUrl}/recepcja?d=${token}`,
+          "",
+          `Link jest ważny ${days} dni. Po zrealizowaniu prośby usuń tę wiadomość.`,
+        ].join("\n"),
+      });
+    }
   } catch (err) {
     // Logujemy tylko komunikat błędu – nigdy danych pacjenta.
     console.error("[recepta]", err instanceof Error ? err.message : "nieznany błąd");

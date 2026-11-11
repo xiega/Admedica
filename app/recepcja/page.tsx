@@ -7,6 +7,8 @@ import {
   verifySessionValue,
 } from "../../src/lib/security";
 import { PLACOWKI, isPlacowka } from "../../src/lib/validators";
+import { dbEnabled, pobierzZgloszenia, type Rekord } from "../../src/lib/store";
+import { oznaczZrealizowana, przywrocJakoNowa, usun, wyloguj } from "./actions";
 
 export const metadata: Metadata = {
   title: "Panel recepcji | Admedica",
@@ -64,6 +66,148 @@ function Notice({ tone, children }: { tone: "red" | "amber" | "gray"; children: 
   return <div className={`rounded-2xl border p-6 shadow-lg ${styles}`}>{children}</div>;
 }
 
+const btn = "px-4 py-2 rounded-lg font-bold text-sm transition";
+
+function Karta({ r }: { r: Rekord }) {
+  const z = parseZgloszenie(decryptJson(r.dane));
+  const nowa = r.status === "nowa";
+  const placowka = isPlacowka(r.placowka) ? PLACOWKI[r.placowka] : "—";
+
+  return (
+    <article
+      className={`rounded-2xl border p-6 shadow-sm ${
+        nowa ? "bg-white border-green-400 border-2" : "bg-gray-50 border-gray-200 opacity-80"
+      }`}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div className="flex items-center gap-2">
+          <span className="bg-[#21135E]/10 text-[#21135E] px-3 py-1 rounded-full text-xs font-semibold">
+            {placowka}
+          </span>
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-bold ${
+              nowa ? "bg-green-100 text-green-800" : "bg-gray-200 text-gray-600"
+            }`}
+          >
+            {nowa ? "Nowa" : "Zrealizowana"}
+          </span>
+        </div>
+        {z && (
+          <span className="text-sm text-gray-500">
+            {new Date(z.ts).toLocaleString("pl-PL", { timeZone: "Europe/Warsaw" })}
+          </span>
+        )}
+      </div>
+
+      {z ? (
+        <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-4">
+          <div>
+            <dt className="text-xs uppercase font-bold tracking-wider text-gray-500">Pacjent</dt>
+            <dd className="font-semibold text-gray-900">{z.imie}</dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase font-bold tracking-wider text-gray-500">PESEL</dt>
+            <dd className="font-mono font-bold text-[#21135E] tracking-wider select-all">{z.pesel}</dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase font-bold tracking-wider text-gray-500">Telefon</dt>
+            <dd className="font-semibold">
+              <a href={`tel:${z.telefon.replace(/[^\d+]/g, "")}`} className="text-[#21135E] hover:underline">
+                {z.telefon}
+              </a>
+            </dd>
+          </div>
+          <div className="sm:col-span-2">
+            <dt className="text-xs uppercase font-bold tracking-wider text-gray-500">Leki i dawkowanie</dt>
+            <dd className="text-gray-900 whitespace-pre-wrap bg-gray-50 border border-gray-100 rounded-lg p-3">
+              {z.leki}
+            </dd>
+          </div>
+        </dl>
+      ) : (
+        <p className="text-sm text-red-700 mb-4">
+          Nie można odszyfrować tego zgłoszenia (zmieniony klucz szyfrujący?).
+        </p>
+      )}
+
+      <div className="flex flex-wrap gap-2">
+        {nowa ? (
+          <form action={oznaczZrealizowana.bind(null, r.id)}>
+            <button className={`${btn} bg-[#21135E] text-white hover:bg-[#37237F]`}>
+              ✓ Oznacz jako zrealizowaną
+            </button>
+          </form>
+        ) : (
+          <>
+            <form action={przywrocJakoNowa.bind(null, r.id)}>
+              <button className={`${btn} border border-gray-300 text-gray-700 hover:bg-white`}>
+                Przywróć jako nową
+              </button>
+            </form>
+            <form action={usun.bind(null, r.id)}>
+              <button className={`${btn} border border-red-300 text-red-700 hover:bg-red-50`}>
+                Usuń z bazy
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </article>
+  );
+}
+
+async function Lista() {
+  if (!dbEnabled()) {
+    return (
+      <Notice tone="gray">
+        Jesteś zalogowany(-a). Baza zgłoszeń nie jest skonfigurowana – otwórz link z wiadomości
+        e-mail „Nowa prośba o receptę”, aby zobaczyć dane pacjenta.
+      </Notice>
+    );
+  }
+
+  let rekordy: Rekord[];
+  try {
+    rekordy = await pobierzZgloszenia();
+  } catch {
+    return (
+      <Notice tone="red">
+        Nie udało się pobrać zgłoszeń z bazy. Odśwież stronę za chwilę; jeśli problem wraca,
+        sprawdź połączenie z serwerem bazy.
+      </Notice>
+    );
+  }
+
+  const nowe = rekordy.filter((r) => r.status === "nowa").length;
+
+  return (
+    <div className="space-y-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-gray-700">
+          <span className="font-bold text-[#21135E]">{nowe}</span> nowych · {rekordy.length - nowe}{" "}
+          zrealizowanych
+        </p>
+        <form action={wyloguj}>
+          <button className={`${btn} border border-gray-300 text-gray-700 bg-white hover:bg-gray-50`}>
+            Wyloguj
+          </button>
+        </form>
+      </div>
+
+      {rekordy.length === 0 ? (
+        <Notice tone="gray">Brak zgłoszeń.</Notice>
+      ) : (
+        rekordy.map((r) => <Karta key={r.id} r={r} />)
+      )}
+
+      <p className="text-xs text-gray-500 text-center">
+        Zgłoszenia są przechowywane w bazie w formie zaszyfrowanej i automatycznie usuwane po
+        ustalonym czasie.
+      </p>
+    </div>
+  );
+}
+
 export default async function RecepcjaPage({ searchParams }: { searchParams: SearchParams }) {
   const sp = await searchParams;
   const d = typeof sp.d === "string" ? sp.d : undefined;
@@ -119,10 +263,7 @@ export default async function RecepcjaPage({ searchParams }: { searchParams: Sea
   if (!d) {
     return (
       <Shell>
-        <Notice tone="gray">
-          Jesteś zalogowany(-a). Otwórz link z wiadomości e-mail „Nowa prośba o receptę”, aby
-          zobaczyć dane pacjenta.
-        </Notice>
+        <Lista />
       </Shell>
     );
   }

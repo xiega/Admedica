@@ -12,6 +12,13 @@ npm run dev
 
 ## Recepty online – jak to działa i dlaczego jest bezpieczne
 
+**Tryb z bazą (zalecany):** serwer strony szyfruje zgłoszenie i wysyła je do małego API w PHP (`php-api/`) na hostingu
+z MySQL (np. seohost). W bazie leży **wyłącznie szyfrogram** – klucz `RECEPTA_KEY` jest tylko na stronie, więc nawet wyciek
+bazy nie ujawnia PESEL-i. Recepcja widzi listę zgłoszeń w `/recepcja` (nowe/zrealizowane, usuwanie), a stare zgłoszenia
+kasują się automatycznie po 30 dniach. Instalacja API: `php-api/README.md`.
+
+**Tryb bez bazy** (gdy `RECEPTY_API_URL` jest puste) działa jak opisano poniżej.
+
 1. Pacjent wypełnia formularz na `/recepty` (HTTPS). PESEL jest sprawdzany (cyfra kontrolna).
 2. Serwer (`app/api/recepta/route.ts`) szyfruje dane algorytmem **AES-256-GCM** kluczem `RECEPTA_KEY`.
    Dane **nie są zapisywane** w bazie ani w logach.
