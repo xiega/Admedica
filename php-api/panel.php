@@ -32,9 +32,9 @@ function h($s)
     return htmlspecialchars((string)$s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-function redirect_self()
+function redirect_self($query = '')
 {
-    header('Location: ' . basename($_SERVER['SCRIPT_NAME']), true, 303);
+    header('Location: ' . basename($_SERVER['SCRIPT_NAME']) . $query, true, 303);
     exit;
 }
 
@@ -43,7 +43,14 @@ if (!$loggedIn && !empty($_SESSION['auth'])) {
     $_SESSION = [];
 }
 
-$error = '';
+// Komunikat z poprzedniego żądania (np. złe hasło) pokazujemy JEDEN raz i od razu zapominamy.
+$error = (string)($_SESSION['flash'] ?? '');
+unset($_SESSION['flash']);
+
+// Logowanie się udało, ale sesja nie została zapamiętana (ciasteczka zablokowane / brak zapisu sesji na serwerze).
+if (!$loggedIn && $error === '' && ($_GET['z'] ?? '') === '1') {
+    $error = 'Hasło jest poprawne, ale przeglądarka lub serwer nie zapamiętały logowania. Włącz ciasteczka dla tej strony i spróbuj ponownie.';
+}
 
 try {
     if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
@@ -51,13 +58,15 @@ try {
 
         if ($action === 'login') {
             if (!rate_limit('login', 10, 900)) {
-                $error = 'Zbyt wiele prób. Spróbuj ponownie za kilkanaście minut.';
-            } elseif (password_verify((string)($_POST['password'] ?? ''), (string)(cfg()['panel_password_hash'] ?? ''))) {
+                $_SESSION['flash'] = 'Zbyt wiele prób. Spróbuj ponownie za kilkanaście minut.';
+                redirect_self();
+            } elseif (password_verify(trim((string)($_POST['password'] ?? '')), (string)(cfg()['panel_password_hash'] ?? ''))) {
                 session_regenerate_id(true);
                 $_SESSION = ['auth' => true, 't' => time(), 'csrf' => bin2hex(random_bytes(16))];
-                redirect_self();
+                redirect_self('?z=1');
             } else {
-                $error = 'Nieprawidłowe hasło.';
+                $_SESSION['flash'] = 'Nieprawidłowe hasło.';
+                redirect_self();
             }
         } elseif ($loggedIn) {
             // Wszystkie pozostałe akcje wymagają zalogowania i poprawnego tokenu CSRF.
@@ -117,7 +126,7 @@ function post_form($action, $id, $label, $class)
   *{box-sizing:border-box} body{margin:0;font-family:system-ui,Arial,sans-serif;background:#f9fafb;color:#111827}
   header{background:#21135E;color:#fff;padding:28px 16px;text-align:center}
   header h1{margin:0;font-size:28px} header p{margin:6px 0 0;color:#dbeafe}
-  main{max-width:760px;margin:-18px auto 40px;padding:0 16px}
+  main{max-width:760px;margin:24px auto 40px;padding:0 16px}
   .box{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:24px;box-shadow:0 4px 14px rgba(0,0,0,.06);margin-bottom:16px}
   .nowa{border:2px solid #4ade80} .done{background:#f3f4f6;opacity:.85}
   .err{background:#fef2f2;border-color:#fecaca;color:#991b1b}
