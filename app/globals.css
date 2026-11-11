@@ -12,11 +12,10 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Strona ma tylko jasny wygląd (białe karty), więc nie przełączamy się na ciemny motyw systemu –
+   wcześniej w ciemnym trybie tekst w polach formularza robił się jasnoszary. */
+:root {
+  color-scheme: light;
 }
 
 body {

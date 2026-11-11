@@ -13,7 +13,7 @@ const PLACOWKI_OPCJE: { id: PlacowkaId; nazwa: string; adres: string }[] = [
 ];
 
 const inputClass =
-  "w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition";
+  "w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#21135E] outline-none transition";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
