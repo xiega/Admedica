@@ -24,7 +24,8 @@ export default function BohaterowPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           
           {/* Główny kontakt (2/3 szerokości) */}
-          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+          <div className="lg:col-span-2 space-y-8">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
               <span className="bg-blue-100 p-2 rounded-lg mr-3 text-2xl">📞</span> 
               Rejestracja Telefoniczna
@@ -66,18 +67,22 @@ export default function BohaterowPage() {
             </div>
           </div>
 
-          {/* Informacje dodatkowe (1/3 szerokości) */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 p-8">
-              <h3 className="font-bold text-gray-900 mb-3 text-xl">💊 Recepta online</h3>
-              <p className="text-sm text-gray-600 mb-4">
-                Stały pacjent? Przedłuż receptę na leki stałe bez wizyty u lekarza.
-              </p>
-              <Link href="/recepty?placowka=bohaterow" className="block w-full bg-[#21135E] text-white text-center font-bold py-2.5 rounded-lg hover:bg-[#37237F] transition">
+            {/* Recepta online – pod telefonem, żeby kolumny miały podobną wysokość */}
+            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+              <div>
+                <h3 className="font-bold text-gray-900 mb-1 text-xl">💊 Recepta online</h3>
+                <p className="text-gray-600">
+                  Stały pacjent? Przedłuż receptę na leki stałe bez wizyty u lekarza.
+                </p>
+              </div>
+              <Link href="/recepty?placowka=bohaterow" className="bg-[#21135E] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap">
                 Zamów receptę
               </Link>
             </div>
+          </div>
 
+          {/* Informacje dodatkowe (1/3 szerokości) */}
+          <div className="space-y-8">
             <div className="bg-[#21135E] rounded-2xl shadow-lg p-8 text-white">
               <h3 className="text-xl font-bold mb-4 flex items-center">
                 <span className="text-2xl mr-2">📍</span> Jak dojechać?

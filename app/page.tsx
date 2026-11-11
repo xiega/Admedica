@@ -105,6 +105,29 @@ export default function Home() {
               Zamów receptę
             </span>
           </Link>
+
+          <div className="grid sm:grid-cols-2 gap-6 mt-6">
+            <Link
+              href="/cennik"
+              className="group flex items-center justify-between gap-4 bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl transition-shadow"
+            >
+              <div>
+                <p className="text-xl font-bold text-gray-900">💰 Cennik</p>
+                <p className="text-gray-600 text-sm">Wizyty prywatne, USG, badania, szczepionki.</p>
+              </div>
+              <span className="text-[#21135E] font-bold group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+            <Link
+              href="/szkola-rodzenia"
+              className="group flex items-center justify-between gap-4 bg-white rounded-2xl shadow-md border border-gray-100 p-6 hover:shadow-xl transition-shadow"
+            >
+              <div>
+                <p className="text-xl font-bold text-gray-900">🤰 Szkoła rodzenia</p>
+                <p className="text-gray-600 text-sm">Opieka położnej w ramach NFZ (Szczepankowo).</p>
+              </div>
+              <span className="text-[#21135E] font-bold group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
         </div>
       </section>
     </main>

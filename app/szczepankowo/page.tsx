@@ -84,8 +84,8 @@ export default function SzczepankowoPage() {
                 </div>
                 
                 <div className="block">
-                  <a href="/cennik-diagnostyka.pdf" target="_blank" className="inline-block border-2 border-[#21135E] text-[#21135E] font-bold py-2.5 px-6 rounded-lg hover:bg-[#21135E] hover:text-white transition">
-                    Cennik badań prywatnych (PDF)
+                  <a href="/cennik"  className="inline-block border-2 border-[#21135E] text-[#21135E] font-bold py-2.5 px-6 rounded-lg hover:bg-[#21135E] hover:text-white transition">
+                    Cennik badań i usług prywatnych
                   </a>
                 </div>
               </div>
