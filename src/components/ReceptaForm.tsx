@@ -24,8 +24,19 @@ function FieldError({ message }: { message?: string }) {
   );
 }
 
-export default function ReceptaForm({ defaultPlacowka }: { defaultPlacowka?: PlacowkaId }) {
-  const [placowka, setPlacowka] = useState<PlacowkaId | "">(defaultPlacowka ?? "");
+// Adres skryptu PHP na serwerze. Domyślnie ta sama domena co strona (ścieżka względna), więc po wgraniu
+// eksportu i katalogu api-recepty na ten sam serwer nic nie trzeba ustawiać. Na Vercelu (inna domena)
+// ustaw NEXT_PUBLIC_RECEPTY_ENDPOINT na pełny adres, np. https://twoja-domena.pl/api-recepty/recepty.php
+const ENDPOINT = process.env.NEXT_PUBLIC_RECEPTY_ENDPOINT || "/api-recepty/recepty.php";
+
+export default function ReceptaForm() {
+  const [placowka, setPlacowka] = useState<PlacowkaId | "">("");
+
+  // Wstępny wybór placówki z adresu (?placowka=...). Czytamy w przeglądarce, bo strona jest statyczna.
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("placowka");
+    if (p === "bohaterow" || p === "szczepankowo") setPlacowka(p);
+  }, []);
   const [errors, setErrors] = useState<Errors>({});
   const [serverError, setServerError] = useState("");
   const [status, setStatus] = useState<Status>("idle");
@@ -58,7 +69,7 @@ export default function ReceptaForm({ defaultPlacowka }: { defaultPlacowka?: Pla
     setStatus("sending");
     setServerError("");
     try {
-      const res = await fetch("/api/recepta", {
+      const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

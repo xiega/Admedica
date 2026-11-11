@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ReceptaForm from "../../src/components/ReceptaForm";
-import { isPlacowka } from "../../src/lib/validators";
 
 export const metadata: Metadata = {
   title: "Recepty online | Admedica",
   description: "Przedłuż receptę na leki stałe bez wizyty u lekarza.",
 };
 
-export default async function ReceptyPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ placowka?: string | string[] }>;
-}) {
-  const sp = await searchParams;
-  const wybrana = typeof sp.placowka === "string" ? sp.placowka : undefined;
-
+export default function ReceptyPage() {
   return (
     <main className="min-h-screen bg-gray-50 pb-20">
       <div className="bg-[#21135E] text-white py-12">
@@ -44,12 +36,11 @@ export default async function ReceptyPage({
               lekarza.
             </li>
             <li className="flex items-start">
-              <span className="mr-2">🔒</span> Dane są szyfrowane i nie są przechowywane na serwerze
-              strony.
+              <span className="mr-2">🔒</span> Dane są szyfrowane przed zapisaniem w bazie.
             </li>
           </ul>
 
-          <ReceptaForm defaultPlacowka={isPlacowka(wybrana) ? wybrana : undefined} />
+          <ReceptaForm />
 
           <p className="mt-8 text-xs text-gray-500 border-t border-gray-100 pt-4">
             To nie jest formularz na nagłe przypadki. W stanach zagrożenia życia dzwoń pod numer 112.

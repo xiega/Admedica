@@ -1,24 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async headers() {
-    return [
-      {
-        // Panel recepcji i API recept: bez cache, bez przekazywania adresu (zawiera token) dalej.
-        source: "/recepcja",
-        headers: [
-          { key: "Cache-Control", value: "no-store" },
-          { key: "Referrer-Policy", value: "no-referrer" },
-          { key: "X-Robots-Tag", value: "noindex, nofollow" },
-          { key: "X-Frame-Options", value: "DENY" },
-        ],
-      },
-      {
-        source: "/api/:path*",
-        headers: [{ key: "Cache-Control", value: "no-store" }],
-      },
-    ];
-  },
+  // Statyczny eksport: `npm run build` tworzy katalog `out/`, który wgrywasz na zwykły serwer.
+  // Cała logika recept (szyfrowanie, baza, panel) jest w php-api/, więc strona nie potrzebuje Node.
+  output: "export",
+  // /recepty/ -> recepty/index.html (działa na zwykłym Apache bez dodatkowej konfiguracji).
+  trailingSlash: true,
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

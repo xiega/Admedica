@@ -1,11 +1,26 @@
-# API recept (PHP + MySQL) – instalacja na seohost
+# Recepty online – backend w PHP (seohost)
 
-Ten katalog wgrywasz na serwer PHP. Strona (Next.js) szyfruje dane i wysyła je tutaj; baza trzyma tylko szyfrogram.
+Cała logika recept jest tutaj: walidacja, szyfrowanie AES-256-GCM, zapis do MySQL i panel recepcji.
+Strona (Next.js, statyczny eksport) tylko wysyła formularz do `recepty.php`.
 
-1. **Baza:** w panelu seohost utwórz bazę MySQL i użytkownika. W phpMyAdmin wybierz bazę → „Import” → wgraj `schema.sql`.
-2. **Pliki:** wgraj (FTP/menedżer plików) `recepty.php` i `.htaccess` do katalogu na domenie z **HTTPS**, np. `https://twoja-domena.pl/api-recepty/recepty.php`.
-3. **Konfiguracja:** skopiuj `config.example.php` jako `config.php` na serwerze i wpisz dane bazy oraz długi losowy `api_token`.
-4. **Strona:** w ustawieniach strony ustaw `RECEPTY_API_URL` (adres z kroku 2) i `RECEPTY_API_TOKEN` (ten sam token).
-5. **Test:** otwórz adres z kroku 2 w przeglądarce – ma wyświetlić `{"ok":false,"error":"method"}`. To znaczy, że skrypt działa i jest chroniony.
+## Instalacja na seohost (menedżer plików)
 
-Zgłoszenia są usuwane automatycznie po `retention_days` dniach. Klucz szyfrujący (`RECEPTA_KEY`) jest tylko na stronie – nigdy na tym serwerze.
+1. **Baza:** w phpMyAdmin wybierz swoją bazę → „Import” → wgraj `schema.sql` (można ponownie, nic nie zepsuje;
+   dodaje tabelę `limity`, tabela `recepty` zostaje).
+2. **Pliki:** w katalogu domeny (HTTPS) utwórz folder `api-recepty` i wgraj do niego: `recepty.php`, `panel.php`,
+   `lib.php`, `.htaccess` oraz `config.php` (kopia `config.example.php` z uzupełnionymi danymi).
+3. **Test:** otwórz `https://TWOJA-DOMENA/api-recepty/recepty.php` – ma pokazać `{"ok":false,"error":"method"}`.
+   Potem `https://TWOJA-DOMENA/api-recepty/panel.php` – ma pokazać okno logowania.
+4. **Strona:** po `npm run build` wgraj zawartość katalogu `out/` na tę samą domenę. Formularz domyślnie wysyła
+   do `/api-recepty/recepty.php`, więc nic więcej nie trzeba ustawiać.
+
+## Bezpieczeństwo i RODO
+
+- W bazie leży wyłącznie szyfrogram (PESEL, imię, telefon i leki są w środku). Klucz jest w `config.php`.
+  **Zrób kopię `encryption_key`** – bez niego zgłoszeń nie da się odszyfrować.
+- `config.php`, `lib.php` i `schema.sql` są zablokowane przed pobraniem przez `.htaccess`. Sprawdź, wpisując ich adres
+  w przeglądarce – powinien być błąd 403.
+- Zgłoszenia usuwają się same po `retention_days` (domyślnie 30 dni). Adresy IP nie są zapisywane (tylko skrót z kluczem).
+- Panel: hasło sprawdzane przez `password_verify`, limit prób, sesja 8 godzin, ochrona CSRF, ciasteczko HttpOnly/Secure.
+- Zmiana hasła: wygeneruj nowy skrót (`php -r "echo password_hash('NOWE', PASSWORD_DEFAULT);"`) i wpisz w `config.php`.
+- Wymagania: PHP 7.4+, PDO MySQL, openssl (standard na seohost).
