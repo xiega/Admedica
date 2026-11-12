@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { ActivityIcon, ArrowLeftIcon, DropletIcon, HeartIcon, IconBadge, MapPinIcon, PhoneIcon, PillIcon, StarIcon, UserIcon } from "../../src/components/Icons";
 
 export default function SzczepankowoPage() {
   const [activeTab, setActiveTab] = useState('poz');
@@ -19,7 +20,7 @@ export default function SzczepankowoPage() {
             Kompleksowe centrum medyczne na ul. Szczepankowo 94a.
           </p>
           <Link href="/" className="inline-flex items-center text-sm font-medium text-white/70 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-lg">
-            ← Wróć do wyboru placówek
+            <ArrowLeftIcon className="mr-2 h-4 w-4" /> Wróć do wyboru placówek
           </Link>
         </div>
       </div>
@@ -36,7 +37,7 @@ export default function SzczepankowoPage() {
                 : 'bg-gray-200 text-gray-600 hover:bg-white'
             }`}
           >
-            🩺 Podstawowa Opieka (POZ)
+            <span className="inline-flex items-center gap-2"><ActivityIcon className="h-5 w-5" /> Podstawowa Opieka (POZ)</span>
           </button>
           
           <button 
@@ -47,7 +48,7 @@ export default function SzczepankowoPage() {
                 : 'bg-gray-200 text-gray-600 hover:bg-white'
             }`}
           >
-            ⭐ Specjaliści Prywatnie
+            <span className="inline-flex items-center gap-2"><StarIcon className="h-5 w-5" /> Specjaliści Prywatnie</span>
           </button>
         </div>
 
@@ -72,7 +73,7 @@ export default function SzczepankowoPage() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-grow text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <span className="text-3xl">🩸</span>
+                  <IconBadge><DropletIcon className="h-6 w-6" /></IconBadge>
                   <h2 className="text-2xl font-bold text-gray-900">Punkt Pobrań i Laboratorium</h2>
                 </div>
                 <p className="text-gray-600 mb-6">Badania krwi i moczu w ramach NFZ oraz prywatnie.</p>
@@ -111,7 +112,7 @@ export default function SzczepankowoPage() {
                   "lek. med. Jakub Kisiel"
                 ].map((lekarz, i) => (
                   <div key={i} className="border border-gray-100 p-5 rounded-xl bg-gray-50 flex items-center h-full">
-                    <div className="text-3xl mr-4">🧑‍⚕️</div>
+                    <IconBadge className="mr-4"><UserIcon className="h-6 w-6" /></IconBadge>
                     <div>
                       <p className="text-sm text-blue-600 font-bold mb-1">Lekarz POZ</p>
                       <p className="font-semibold text-gray-900 leading-tight">{lekarz}</p>
@@ -124,7 +125,7 @@ export default function SzczepankowoPage() {
             {/* Szkoła rodzenia */}
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">🤰 Szkoła rodzenia</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3"><HeartIcon className="h-6 w-6 text-[#21135E]" /> Szkoła rodzenia</h2>
                 <p className="text-gray-600">Opieka położnej od 21. tygodnia ciąży do 2. miesiąca życia dziecka, w ramach NFZ.</p>
               </div>
               <Link href="/szkola-rodzenia" className="border-2 border-[#21135E] text-[#21135E] font-bold py-3 px-8 rounded-lg hover:bg-[#21135E] hover:text-white transition whitespace-nowrap">
@@ -133,9 +134,9 @@ export default function SzczepankowoPage() {
             </div>
 
             {/* Recepty online – formularz jest na osobnej stronie /recepty */}
-            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">💊 Przedłużenie recepty online</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3"><PillIcon className="h-6 w-6 text-[#21135E]" /> Przedłużenie recepty online</h2>
                 <p className="text-gray-600">Dla stałych pacjentów POZ – leki przyjmowane na stałe, bez wizyty u lekarza.</p>
               </div>
               <Link href="/recepty?placowka=szczepankowo" className="bg-[#21135E] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap">
@@ -160,7 +161,7 @@ export default function SzczepankowoPage() {
                 </p>
               </div>
               <a href="tel:618751908" className="text-2xl sm:text-3xl font-extrabold text-[#21135E] hover:opacity-90 transition bg-white px-8 py-4 rounded-xl whitespace-nowrap shadow-xl">
-                📞 61 875 19 08
+                <span className="inline-flex items-center gap-3"><PhoneIcon className="h-7 w-7" /> 61 875 19 08</span>
               </a>
             </div>
 
@@ -253,7 +254,7 @@ export default function SzczepankowoPage() {
         <div className="grid md:grid-cols-2 gap-6 mt-12">
           
           <div className="bg-[#21135E] rounded-2xl shadow-lg p-8 text-white flex flex-col h-full">
-            <h3 className="text-xl font-bold mb-4 flex items-center"><span className="text-2xl mr-2">📍</span> Jak dojechać?</h3>
+            <h3 className="text-xl font-bold mb-4 flex items-center"><MapPinIcon className="mr-2 h-6 w-6" /> Jak dojechać?</h3>
             <p className="opacity-90 mb-2">Admedica Szczepankowo</p>
             <p className="font-semibold text-lg mb-6">ul. Szczepankowo 94a</p>
             <p className="opacity-90 mb-4">61-306 Poznań</p>

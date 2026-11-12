@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { cennik, pliki } from "../../src/data/cennik";
+import { ArrowLeftIcon, DownloadIcon, FileTextIcon } from "../../src/components/Icons";
 
 export const metadata: Metadata = {
   title: "Cennik | Admedica",
@@ -20,7 +21,7 @@ export default function CennikPage() {
             href="/"
             className="inline-flex items-center text-sm font-medium text-white/70 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-lg"
           >
-            ← Wróć do strony głównej
+            <ArrowLeftIcon className="mr-2 h-4 w-4" /> Wróć do strony głównej
           </Link>
         </div>
       </div>
@@ -39,8 +40,8 @@ export default function CennikPage() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-between gap-3 border-2 border-[#21135E] text-[#21135E] font-bold py-3 px-5 rounded-lg hover:bg-[#21135E] hover:text-white transition"
               >
-                <span>📄 {p.nazwa}</span>
-                <span aria-hidden="true">↓</span>
+                <span className="inline-flex items-center gap-2"><FileTextIcon className="h-5 w-5" /> {p.nazwa}</span>
+                <DownloadIcon className="h-5 w-5" />
               </a>
             ))}
           </div>

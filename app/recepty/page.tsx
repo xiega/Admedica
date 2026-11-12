@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ReceptaForm from "../../src/components/ReceptaForm";
+import { ArrowLeftIcon, CheckIcon, LockIcon } from "../../src/components/Icons";
 
 export const metadata: Metadata = {
   title: "Recepty online | Admedica",
@@ -20,7 +21,7 @@ export default function ReceptyPage() {
             href="/"
             className="inline-flex items-center text-sm font-medium text-white/70 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-lg"
           >
-            ← Wróć do strony głównej
+            <ArrowLeftIcon className="mr-2 h-4 w-4" /> Wróć do strony głównej
           </Link>
         </div>
       </div>
@@ -29,14 +30,14 @@ export default function ReceptyPage() {
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-10">
           <ul className="space-y-2 text-sm text-gray-700 mb-8 bg-green-50 border border-green-100 rounded-xl p-5">
             <li className="flex items-start">
-              <span className="text-green-600 mr-2">✓</span> Tylko dla stałych pacjentów POZ.
+              <CheckIcon className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" /> Tylko dla stałych pacjentów POZ.
             </li>
             <li className="flex items-start">
-              <span className="text-green-600 mr-2">✓</span> Tylko leki zalecone wcześniej przez
+              <CheckIcon className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" /> Tylko leki zalecone wcześniej przez
               lekarza.
             </li>
             <li className="flex items-start">
-              <span className="mr-2">🔒</span> Dane są szyfrowane przed zapisaniem w bazie.
+              <LockIcon className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" /> Dane są szyfrowane przed zapisaniem w bazie.
             </li>
           </ul>
 

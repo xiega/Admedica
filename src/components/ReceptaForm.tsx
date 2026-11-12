@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { isValidPesel, isValidPhone, type PlacowkaId } from "../lib/validators";
+import { CheckCircleIcon } from "./Icons";
 
 type Status = "idle" | "sending" | "sent";
 type Field = "placowka" | "imie" | "pesel" | "telefon" | "leki" | "zgoda";
@@ -99,7 +100,7 @@ export default function ReceptaForm() {
   if (status === "sent") {
     return (
       <div className="text-center py-8" role="status">
-        <div className="text-5xl mb-4">✅</div>
+        <CheckCircleIcon className="mx-auto mb-4 h-14 w-14 text-emerald-600" />
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Zgłoszenie wysłane</h2>
         <p className="text-gray-600 max-w-md mx-auto">
           Prośba o receptę trafiła do recepcji. Jeśli będzie potrzebny kontakt, zadzwonimy na

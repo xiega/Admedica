@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowLeftIcon, CheckIcon, MailIcon, PhoneIcon } from "../../src/components/Icons";
 
 export const metadata: Metadata = {
   title: "Szkoła rodzenia | Admedica Szczepankowo",
@@ -61,7 +62,7 @@ export default function SzkolaRodzeniaPage() {
             href="/szczepankowo"
             className="inline-flex items-center text-sm font-medium text-white/70 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-lg"
           >
-            ← Wróć do placówki Szczepankowo
+            <ArrowLeftIcon className="mr-2 h-4 w-4" /> Wróć do placówki Szczepankowo
           </Link>
         </div>
       </div>
@@ -81,13 +82,13 @@ export default function SzkolaRodzeniaPage() {
               href="tel:+48535709158"
               className="text-center bg-[#21135E] text-white font-bold py-3 px-6 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap"
             >
-              📞 +48 535 709 158
+              <span className="inline-flex items-center gap-2"><PhoneIcon className="h-5 w-5" /> +48 535 709 158</span>
             </a>
             <a
               href="mailto:Mleczna.polozna@gmail.com"
               className="text-center border-2 border-[#21135E] text-[#21135E] font-bold py-3 px-6 rounded-lg hover:bg-[#21135E] hover:text-white transition"
             >
-              ✉️ Napisz do położnej
+              <span className="inline-flex items-center gap-2"><MailIcon className="h-5 w-5" /> Napisz do położnej</span>
             </a>
           </div>
         </div>
@@ -97,7 +98,7 @@ export default function SzkolaRodzeniaPage() {
           <ul className="space-y-4">
             {zalety.map((z) => (
               <li key={z} className="flex items-start text-gray-700">
-                <span className="text-emerald-600 mr-3 mt-0.5">✓</span>
+                <CheckIcon className="mr-3 mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
                 <span>{z}</span>
               </li>
             ))}
