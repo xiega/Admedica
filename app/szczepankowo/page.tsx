@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { ActivityIcon, ArrowLeftIcon, DropletIcon, HeartIcon, IconBadge, MapPinIcon, PhoneIcon, PillIcon, StarIcon, UserIcon } from "../../src/components/Icons";
 
 export default function SzczepankowoPage() {
   const [activeTab, setActiveTab] = useState('poz');
@@ -19,7 +20,7 @@ export default function SzczepankowoPage() {
             Kompleksowe centrum medyczne na ul. Szczepankowo 94a.
           </p>
           <Link href="/" className="inline-flex items-center text-sm font-medium text-white/70 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-lg">
-            ← Wróć do wyboru placówek
+            <ArrowLeftIcon className="mr-2 h-4 w-4" /> Wróć do wyboru placówek
           </Link>
         </div>
       </div>
@@ -36,7 +37,7 @@ export default function SzczepankowoPage() {
                 : 'bg-gray-200 text-gray-600 hover:bg-white'
             }`}
           >
-            🩺 Podstawowa Opieka (POZ)
+            <span className="inline-flex items-center gap-2"><ActivityIcon className="h-5 w-5" /> Podstawowa Opieka (POZ)</span>
           </button>
           
           <button 
@@ -47,7 +48,7 @@ export default function SzczepankowoPage() {
                 : 'bg-gray-200 text-gray-600 hover:bg-white'
             }`}
           >
-            ⭐ Specjaliści Prywatnie
+            <span className="inline-flex items-center gap-2"><StarIcon className="h-5 w-5" /> Specjaliści Prywatnie</span>
           </button>
         </div>
 
@@ -72,7 +73,7 @@ export default function SzczepankowoPage() {
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-grow text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
-                  <span className="text-3xl">🩸</span>
+                  <IconBadge><DropletIcon className="h-6 w-6" /></IconBadge>
                   <h2 className="text-2xl font-bold text-gray-900">Punkt Pobrań i Laboratorium</h2>
                 </div>
                 <p className="text-gray-600 mb-6">Badania krwi i moczu w ramach NFZ oraz prywatnie.</p>
@@ -84,8 +85,8 @@ export default function SzczepankowoPage() {
                 </div>
                 
                 <div className="block">
-                  <a href="/cennik-diagnostyka.pdf" target="_blank" className="inline-block border-2 border-[#21135E] text-[#21135E] font-bold py-2.5 px-6 rounded-lg hover:bg-[#21135E] hover:text-white transition">
-                    Cennik badań prywatnych (PDF)
+                  <a href="/cennik"  className="inline-block border-2 border-[#21135E] text-[#21135E] font-bold py-2.5 px-6 rounded-lg hover:bg-[#21135E] hover:text-white transition">
+                    Cennik badań i usług prywatnych
                   </a>
                 </div>
               </div>
@@ -111,7 +112,7 @@ export default function SzczepankowoPage() {
                   "lek. med. Jakub Kisiel"
                 ].map((lekarz, i) => (
                   <div key={i} className="border border-gray-100 p-5 rounded-xl bg-gray-50 flex items-center h-full">
-                    <div className="text-3xl mr-4">🧑‍⚕️</div>
+                    <IconBadge className="mr-4"><UserIcon className="h-6 w-6" /></IconBadge>
                     <div>
                       <p className="text-sm text-blue-600 font-bold mb-1">Lekarz POZ</p>
                       <p className="font-semibold text-gray-900 leading-tight">{lekarz}</p>
@@ -121,59 +122,26 @@ export default function SzczepankowoPage() {
               </div>
             </div>
 
-            {/* E-Recepta Formularz z rozbudowaną klauzulą RODO */}
-            <div className="bg-white rounded-2xl shadow-lg border-2 border-green-500 overflow-hidden" id="e-recepta">
-              <div className="grid md:grid-cols-5">
-                <div className="md:col-span-2 bg-green-50 p-8 flex flex-col justify-center">
-                  <span className="text-4xl mb-4">💊</span>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Zamów e-Receptę</h2>
-                  <p className="text-gray-700 mb-6 font-medium">Szybkie przedłużenie leków stałych bez konieczności wizyty u lekarza.</p>
-                  <ul className="space-y-3 text-sm text-gray-600">
-                    <li className="flex items-start"><span className="text-green-500 mr-2">✓</span> Tylko dla stałych pacjentów POZ.</li>
-                    <li className="flex items-start"><span className="text-green-500 mr-2">✓</span> Tylko leki zalecone wcześniej.</li>
-                    <li className="flex items-start"><span className="text-[#21135E] mr-2">🔒</span> Szyfrowane i bezpieczne (RODO).</li>
-                  </ul>
-                </div>
-                
-                <div className="md:col-span-3 p-8 lg:p-10">
-                  <form className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Imię i Nazwisko</label>
-                        <input type="text" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="Jan Kowalski" />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">PESEL</label>
-                        <input type="text" maxLength={11} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="00000000000" />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Numer telefonu</label>
-                      <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition" placeholder="123 456 789" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">Nazwy leków i dawkowanie</label>
-                      <textarea rows={4} required className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#21135E] outline-none transition resize-none" placeholder="Np. Euthyrox 50..."></textarea>
-                    </div>
-
-                    {/* Profesjonalne zgody RODO i oświadczenia medyczne */}
-                    <div className="space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-200">
-                      <div className="flex items-start">
-                        <div className="flex items-center h-5 mt-0.5">
-                          <input id="rodo-1" type="checkbox" required className="w-4 h-4 rounded border-gray-300 text-[#21135E] focus:ring-[#21135E]" />
-                        </div>
-                        <label htmlFor="rodo-1" className="ml-3 text-xs text-gray-700 leading-relaxed">
-                          <span className="font-semibold text-gray-900">* Wyrażam zgodę</span> na przetwarzanie moich danych osobowych, w tym szczególnych kategorii danych dotyczących zdrowia (PESEL, historia leczenia, zapotrzebowanie na leki), przez Centrum Medyczne Admedica w celu wystawienia e-recepty. Zostałem(-am) poinformowany(-a) o dobrowolności podania danych oraz prawie dostępu do ich treści i ich poprawiania.
-                        </label>
-                      </div>
-                    </div>
-
-                    <button type="submit" className="w-full bg-[#21135E] text-white font-bold py-4 rounded-lg hover:bg-blue-800 transition shadow-md">
-                      Wyślij zamówienie na e-Receptę
-                    </button>
-                  </form>
-                </div>
+            {/* Szkoła rodzenia */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3"><HeartIcon className="h-6 w-6 text-[#21135E]" /> Szkoła rodzenia</h2>
+                <p className="text-gray-600">Opieka położnej od 21. tygodnia ciąży do 2. miesiąca życia dziecka, w ramach NFZ.</p>
               </div>
+              <Link href="/szkola-rodzenia" className="border-2 border-[#21135E] text-[#21135E] font-bold py-3 px-8 rounded-lg hover:bg-[#21135E] hover:text-white transition whitespace-nowrap">
+                Zobacz plan zajęć
+              </Link>
+            </div>
+
+            {/* Recepty online – formularz jest na osobnej stronie /recepty */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3"><PillIcon className="h-6 w-6 text-[#21135E]" /> Przedłużenie recepty online</h2>
+                <p className="text-gray-600">Dla stałych pacjentów POZ – leki przyjmowane na stałe, bez wizyty u lekarza.</p>
+              </div>
+              <Link href="/recepty?placowka=szczepankowo" className="bg-[#21135E] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap">
+                Zamów receptę
+              </Link>
             </div>
 
           </div>
@@ -193,7 +161,7 @@ export default function SzczepankowoPage() {
                 </p>
               </div>
               <a href="tel:618751908" className="text-2xl sm:text-3xl font-extrabold text-[#21135E] hover:opacity-90 transition bg-white px-8 py-4 rounded-xl whitespace-nowrap shadow-xl">
-                📞 61 875 19 08
+                <span className="inline-flex items-center gap-3"><PhoneIcon className="h-7 w-7" /> 61 875 19 08</span>
               </a>
             </div>
 
@@ -286,7 +254,7 @@ export default function SzczepankowoPage() {
         <div className="grid md:grid-cols-2 gap-6 mt-12">
           
           <div className="bg-[#21135E] rounded-2xl shadow-lg p-8 text-white flex flex-col h-full">
-            <h3 className="text-xl font-bold mb-4 flex items-center"><span className="text-2xl mr-2">📍</span> Jak dojechać?</h3>
+            <h3 className="text-xl font-bold mb-4 flex items-center"><MapPinIcon className="mr-2 h-6 w-6" /> Jak dojechać?</h3>
             <p className="opacity-90 mb-2">Admedica Szczepankowo</p>
             <p className="font-semibold text-lg mb-6">ul. Szczepankowo 94a</p>
             <p className="opacity-90 mb-4">61-306 Poznań</p>

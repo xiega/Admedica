@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeftIcon, ArrowRightIcon, IconBadge, MapPinIcon, PhoneIcon, PillIcon } from "../../src/components/Icons";
 
 export default function BohaterowPage() {
   return (
@@ -15,7 +16,7 @@ export default function BohaterowPage() {
             Podstawowa Opieka Zdrowotna dla Ciebie i Twojej rodziny na Ratajach.
           </p>
           <Link href="/" className="inline-flex items-center text-sm font-medium text-white/70 hover:text-white transition-colors bg-white/10 px-4 py-2 rounded-lg">
-            ← Wróć do wyboru placówek
+            <ArrowLeftIcon className="mr-2 h-4 w-4" /> Wróć do wyboru placówek
           </Link>
         </div>
       </div>
@@ -24,9 +25,10 @@ export default function BohaterowPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           
           {/* Główny kontakt (2/3 szerokości) */}
-          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+          <div className="lg:col-span-2 space-y-8">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <span className="bg-blue-100 p-2 rounded-lg mr-3 text-2xl">📞</span> 
+              <IconBadge className="mr-3"><PhoneIcon className="h-6 w-6" /></IconBadge>
               Rejestracja Telefoniczna
             </h2>
             <p className="text-gray-600 mb-8 text-lg">
@@ -66,11 +68,28 @@ export default function BohaterowPage() {
             </div>
           </div>
 
+            {/* Recepta online – pod telefonem, żeby kolumny miały podobną wysokość */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <IconBadge><PillIcon className="h-6 w-6" /></IconBadge>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1 text-xl">Recepta online</h3>
+                  <p className="text-gray-600">
+                    Stały pacjent? Przedłuż receptę na leki stałe bez wizyty u lekarza.
+                  </p>
+                </div>
+              </div>
+              <Link href="/recepty?placowka=bohaterow" className="inline-flex items-center gap-2 bg-[#21135E] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap">
+                Zamów receptę <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+
           {/* Informacje dodatkowe (1/3 szerokości) */}
           <div className="space-y-8">
             <div className="bg-[#21135E] rounded-2xl shadow-lg p-8 text-white">
               <h3 className="text-xl font-bold mb-4 flex items-center">
-                <span className="text-2xl mr-2">📍</span> Jak dojechać?
+                <MapPinIcon className="mr-2 h-6 w-6" /> Jak dojechać?
               </h3>
               <p className="opacity-90 mb-2">Admedica Bohaterów</p>
               <p className="font-semibold text-lg mb-6">os. Bohaterów II Wojny Światowej 29</p>

@@ -1,0 +1,5 @@
+# Pliki z hasłami, kodem pomocniczym i schemat nie mogą być pobierane przez przeglądarkę.
+<FilesMatch "^(config\.php|config\.example\.php|lib\.php|schema\.sql|README\.md)$">
+    Require all denied
+</FilesMatch>
+Options -Indexes

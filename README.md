@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Admedica – strona przychodni
 
-## Getting Started
+Next.js + Tailwind. Strony: `/` (wybór placówki), `/bohaterow`, `/szczepankowo`, `/recepty` (formularz), `/recepcja` (panel dla recepcji).
 
-First, run the development server:
+## Uruchomienie
 
 ```bash
+npm install
+cp .env.example .env.local   # uzupełnij wartości
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Recepty online – jak to działa
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Strona jest **statyczna** (`npm run build` → katalog `out/`, wgrywany na zwykły serwer). Cała logika recept jest w `php-api/`
+(PHP + MySQL na hostingu): walidacja PESEL, szyfrowanie AES-256-GCM, zapis w bazie i panel recepcji `/api-recepty/panel.php`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Pacjent wypełnia formularz na `/recepty` (HTTPS).
+2. `php-api/recepty.php` sprawdza dane, **szyfruje** je i zapisuje w bazie. W bazie nie ma jawnego PESEL-u ani leków.
+3. Recepcja loguje się w panelu hasłem, widzi listę zgłoszeń, oznacza „zrealizowane” albo usuwa.
+4. Zgłoszenia kasują się automatycznie po 30 dniach. Opcjonalnie przychodzi mail z samym powiadomieniem (bez danych).
 
-## Learn More
+Instalacja i zasady bezpieczeństwa: `php-api/README.md`.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Zasady dla recepcji
+- Hasło do panelu znają tylko osoby z recepcji; przy zmianie personelu zmień hasło.
+- Zrealizowane zgłoszenia usuwaj z panelu.
