@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function ReceptyPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
-      <div className="bg-[#21135E] text-white py-12">
+    <main className="min-h-screen bg-slate-100 pb-20">
+      <div className="bg-gradient-to-b from-[#21135E] to-[#33218a] text-white py-12">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-3">Recepty online</h1>
           <p className="text-xl text-blue-100 mb-6">
@@ -27,7 +27,7 @@ export default function ReceptyPage() {
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-10">
+        <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 sm:p-10">
           <ul className="space-y-2 text-sm text-gray-700 mb-8 bg-green-50 border border-green-100 rounded-xl p-5">
             <li className="flex items-start">
               <CheckIcon className="mr-2 mt-0.5 h-4 w-4 flex-shrink-0 text-green-600" /> Tylko dla stałych pacjentów POZ.
@@ -43,7 +43,7 @@ export default function ReceptyPage() {
 
           <ReceptaForm />
 
-          <p className="mt-8 text-xs text-gray-500 border-t border-gray-100 pt-4">
+          <p className="mt-8 text-xs text-slate-600 border-t border-slate-200 pt-4">
             To nie jest formularz na nagłe przypadki. W stanach zagrożenia życia dzwoń pod numer 112.
           </p>
         </div>

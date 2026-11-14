@@ -48,11 +48,11 @@ const spotkania = [
 
 export default function SzkolaRodzeniaPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
-      <div className="bg-[#21135E] text-white py-14">
+    <main className="min-h-screen bg-slate-100 pb-20">
+      <div className="bg-gradient-to-b from-[#21135E] to-[#33218a] text-white py-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block bg-green-500/20 text-green-300 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wider mb-4">
-            W RAMACH NFZ
+            SZCZEPANKOWO · W RAMACH NFZ
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold mb-3">Szkoła rodzenia</h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-6">
@@ -69,13 +69,13 @@ export default function SzkolaRodzeniaPage() {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-10 space-y-8">
         {/* Kontakt na górze, żeby od razu było widać, jak się zapisać */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 sm:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <p className="text-sm text-gray-500 uppercase font-bold tracking-wider mb-1">
+            <p className="text-sm text-slate-600 uppercase font-bold tracking-wider mb-1">
               Zapisy i informacje
             </p>
             <p className="text-xl font-bold text-gray-900">Marta Urbańska</p>
-            <p className="text-gray-600">Położna</p>
+            <p className="text-slate-700">Położna</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <a
@@ -93,7 +93,7 @@ export default function SzkolaRodzeniaPage() {
           </div>
         </div>
 
-        <section className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-8">
+        <section className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Dlaczego warto wybrać właśnie nas?</h2>
           <ul className="space-y-4">
             {zalety.map((z) => (
@@ -105,24 +105,24 @@ export default function SzkolaRodzeniaPage() {
           </ul>
         </section>
 
-        <section className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-8">
+        <section className="bg-white rounded-2xl shadow-lg border border-slate-200 p-6 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Plan spotkań</h2>
           <ol className="space-y-4">
             {spotkania.map((s, i) => (
-              <li key={s.tytul} className="flex items-start gap-4 bg-gray-50 border border-gray-100 rounded-xl p-4">
+              <li key={s.tytul} className="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
                 <span className="flex-shrink-0 w-9 h-9 rounded-full bg-[#21135E] text-white font-bold flex items-center justify-center">
                   {i + 1}
                 </span>
                 <div>
                   <h3 className="font-bold text-gray-900">{s.tytul}</h3>
-                  <p className="text-sm text-gray-600">{s.opis}</p>
+                  <p className="text-sm text-slate-700">{s.opis}</p>
                 </div>
               </li>
             ))}
           </ol>
         </section>
 
-        <p className="text-center text-gray-600">
+        <p className="text-center text-slate-700">
           Zadzwoń lub napisz i uzyskaj więcej informacji bezpośrednio od położnej.
         </p>
       </div>

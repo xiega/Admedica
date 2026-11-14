@@ -14,7 +14,7 @@ const PLACOWKI_OPCJE: { id: PlacowkaId; nazwa: string; adres: string }[] = [
 ];
 
 const inputClass =
-  "w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-[#21135E] outline-none transition";
+  "w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder:text-slate-500 focus:ring-2 focus:ring-[#21135E] outline-none transition";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -102,7 +102,7 @@ export default function ReceptaForm() {
       <div className="text-center py-8" role="status">
         <CheckCircleIcon className="mx-auto mb-4 h-14 w-14 text-emerald-600" />
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Zgłoszenie wysłane</h2>
-        <p className="text-gray-600 max-w-md mx-auto">
+        <p className="text-slate-700 max-w-md mx-auto">
           Prośba o receptę trafiła do recepcji. Jeśli będzie potrzebny kontakt, zadzwonimy na
           podany numer telefonu.
         </p>
@@ -133,7 +133,7 @@ export default function ReceptaForm() {
                 className="sr-only"
               />
               <span className="block font-bold text-gray-900">{o.nazwa}</span>
-              <span className="block text-sm text-gray-500">{o.adres}</span>
+              <span className="block text-sm text-slate-600">{o.adres}</span>
             </label>
           ))}
         </div>
@@ -218,7 +218,7 @@ export default function ReceptaForm() {
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+      <div className="bg-slate-50 p-4 rounded-xl border border-gray-200">
         <div className="flex items-start">
           <input
             id="zgoda"

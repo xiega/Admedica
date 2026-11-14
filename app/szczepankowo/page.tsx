@@ -7,10 +7,10 @@ export default function SzczepankowoPage() {
   const [activeTab, setActiveTab] = useState('poz');
 
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
+    <main className="min-h-screen bg-slate-100 pb-20">
       
       {/* Nagłówek placówki */}
-      <div className="bg-[#21135E] text-white py-16">
+      <div className="bg-gradient-to-b from-[#21135E] to-[#33218a] text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block bg-green-500/20 text-green-300 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wider mb-4">
             NFZ + WIZYTY PRYWATNE
@@ -34,7 +34,7 @@ export default function SzczepankowoPage() {
             className={`px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-md ${
               activeTab === 'poz' 
                 ? 'bg-white text-[#21135E] ring-4 ring-[#21135E]/20 scale-105' 
-                : 'bg-gray-200 text-gray-600 hover:bg-white'
+                : 'bg-gray-200 text-slate-700 hover:bg-white'
             }`}
           >
             <span className="inline-flex items-center gap-2"><ActivityIcon className="h-5 w-5" /> Podstawowa Opieka (POZ)</span>
@@ -45,7 +45,7 @@ export default function SzczepankowoPage() {
             className={`px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-md ${
               activeTab === 'prywatnie' 
                 ? 'bg-[#21135E] text-white ring-4 ring-[#21135E]/30 scale-105' 
-                : 'bg-gray-200 text-gray-600 hover:bg-white'
+                : 'bg-gray-200 text-slate-700 hover:bg-white'
             }`}
           >
             <span className="inline-flex items-center gap-2"><StarIcon className="h-5 w-5" /> Specjaliści Prywatnie</span>
@@ -58,11 +58,11 @@ export default function SzczepankowoPage() {
         {activeTab === 'poz' && (
           <div className="animate-fade-in space-y-12">
             
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col xl:flex-row items-center xl:justify-between gap-6 text-center xl:text-left min-h-[160px]">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 flex flex-col xl:flex-row items-center xl:justify-between gap-6 text-center xl:text-left min-h-[160px]">
               <div>
-                <p className="text-sm text-gray-500 uppercase font-bold tracking-wider mb-1">Rejestracja NFZ</p>
+                <p className="text-sm text-slate-600 uppercase font-bold tracking-wider mb-1">Rejestracja NFZ</p>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Lekarz rodzinny i Pediatra</h2>
-                <p className="text-gray-500 text-sm">Czynne pon-pt: 8:00 - 18:00</p>
+                <p className="text-slate-600 text-sm">Czynne pon-pt: 8:00 - 18:00</p>
               </div>
               <a href="tel:618751908" className="text-2xl sm:text-3xl font-extrabold text-[#21135E] hover:opacity-80 transition bg-blue-50 px-8 py-4 rounded-xl whitespace-nowrap">
                 61 875 19 08
@@ -70,18 +70,18 @@ export default function SzczepankowoPage() {
             </div>
 
             {/* Punkt Pobrań Krwi - Laboratorium */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center gap-8">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-grow text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-3 mb-2">
                   <IconBadge><DropletIcon className="h-6 w-6" /></IconBadge>
                   <h2 className="text-2xl font-bold text-gray-900">Punkt Pobrań i Laboratorium</h2>
                 </div>
-                <p className="text-gray-600 mb-6">Badania krwi i moczu w ramach NFZ oraz prywatnie.</p>
+                <p className="text-slate-700 mb-6">Badania krwi i moczu w ramach NFZ oraz prywatnie.</p>
                 
-                <div className="bg-gray-50 rounded-xl p-4 inline-block mb-6 text-left border border-gray-100">
-                  <p className="text-sm text-gray-500 uppercase font-bold tracking-wider mb-2">Godziny pobierania materiału</p>
+                <div className="bg-slate-50 rounded-xl p-4 inline-block mb-6 text-left border border-slate-200">
+                  <p className="text-sm text-slate-600 uppercase font-bold tracking-wider mb-2">Godziny pobierania materiału</p>
                   <p className="text-gray-800"><span className="font-semibold text-[#21135E]">Wtorki i Czwartki:</span> 7:30 - 10:30</p>
-                  <p className="text-xs text-gray-500 mt-1 italic">*Pobrania nie wymagają wcześniejszej rejestracji.</p>
+                  <p className="text-xs text-slate-600 mt-1 italic">*Pobrania nie wymagają wcześniejszej rejestracji.</p>
                 </div>
                 
                 <div className="block">
@@ -91,8 +91,8 @@ export default function SzczepankowoPage() {
                 </div>
               </div>
               
-              <div className="md:w-1/3 flex flex-col items-center border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0 md:pl-8">
-                <p className="text-xs text-gray-400 uppercase font-bold tracking-wider mb-4">Współpracujemy z:</p>
+              <div className="md:w-1/3 flex flex-col items-center border-t md:border-t-0 md:border-l border-slate-200 pt-6 md:pt-0 md:pl-8">
+                <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-4">Współpracujemy z:</p>
                 <img 
                   src="/images/Diagnostyka.png" 
                   alt="Diagnostyka Logo" 
@@ -101,7 +101,7 @@ export default function SzczepankowoPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Nasi Lekarze POZ</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
@@ -111,7 +111,7 @@ export default function SzczepankowoPage() {
                   "lek. med. Maria Wosik",
                   "lek. med. Jakub Kisiel"
                 ].map((lekarz, i) => (
-                  <div key={i} className="border border-gray-100 p-5 rounded-xl bg-gray-50 flex items-center h-full">
+                  <div key={i} className="border border-slate-200 p-5 rounded-xl bg-slate-50 flex items-center h-full">
                     <IconBadge className="mr-4"><UserIcon className="h-6 w-6" /></IconBadge>
                     <div>
                       <p className="text-sm text-blue-600 font-bold mb-1">Lekarz POZ</p>
@@ -123,10 +123,10 @@ export default function SzczepankowoPage() {
             </div>
 
             {/* Szkoła rodzenia */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3"><HeartIcon className="h-6 w-6 text-[#21135E]" /> Szkoła rodzenia</h2>
-                <p className="text-gray-600">Opieka położnej od 21. tygodnia ciąży do 2. miesiąca życia dziecka, w ramach NFZ.</p>
+                <p className="text-slate-700">Opieka położnej od 21. tygodnia ciąży do 2. miesiąca życia dziecka, w ramach NFZ.</p>
               </div>
               <Link href="/szkola-rodzenia" className="border-2 border-[#21135E] text-[#21135E] font-bold py-3 px-8 rounded-lg hover:bg-[#21135E] hover:text-white transition whitespace-nowrap">
                 Zobacz plan zajęć
@@ -134,10 +134,10 @@ export default function SzczepankowoPage() {
             </div>
 
             {/* Recepty online – formularz jest na osobnej stronie /recepty */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left" id="e-recepta">
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center justify-center md:justify-start gap-3"><PillIcon className="h-6 w-6 text-[#21135E]" /> Przedłużenie recepty online</h2>
-                <p className="text-gray-600">Dla stałych pacjentów POZ – leki przyjmowane na stałe, bez wizyty u lekarza.</p>
+                <p className="text-slate-700">Dla stałych pacjentów POZ – leki przyjmowane na stałe, bez wizyty u lekarza.</p>
               </div>
               <Link href="/recepty?placowka=szczepankowo" className="bg-[#21135E] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#37237F] transition whitespace-nowrap">
                 Zamów receptę
@@ -167,27 +167,27 @@ export default function SzczepankowoPage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               
-              <div className="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
+              <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
                 <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-2">Kardiologia</p>
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-1 leading-tight">dr n. med. Wioletta Sacharczuk</h3>
                   <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight">dr n. med. Piotr Lehmann</h3>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
+                <div className="bg-slate-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
                   <p className="flex justify-between font-semibold border-b border-gray-200 pb-2 mb-2">
                     <span>Konsultacja:</span> <span>od 200 zł</span>
                   </p>
                   <p>Wtorki i Czwartki (po południu)</p>
-                  <p className="text-xs text-gray-500 mt-1 italic">Możliwość wykonania echa serca.</p>
+                  <p className="text-xs text-slate-600 mt-1 italic">Możliwość wykonania echa serca.</p>
                 </div>
               </div>
 
-              <div className="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
+              <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
                 <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-2">Endokrynologia</p>
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight">dr Karolina Hoffmann</h3>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
+                <div className="bg-slate-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
                   <p className="flex justify-between font-semibold border-b border-gray-200 pb-2 mb-2">
                     <span>Konsultacja:</span> <span>od 220 zł</span>
                   </p>
@@ -196,13 +196,13 @@ export default function SzczepankowoPage() {
                 </div>
               </div>
 
-              <div className="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
+              <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
                 <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-2">Ortopedia</p>
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-1 leading-tight">lek. med. Tomasz Jaszczak</h3>
                   <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight">dr Radosław Pietrasik</h3>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
+                <div className="bg-slate-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
                   <p className="flex justify-between font-semibold border-b border-gray-200 pb-2 mb-2">
                     <span>Konsultacja:</span> <span>od 200 zł</span>
                   </p>
@@ -210,33 +210,33 @@ export default function SzczepankowoPage() {
                 </div>
               </div>
 
-              <div className="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
+              <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
                 <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-2">Neurologia</p>
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight">dr Agnieszka Hellmann</h3>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
+                <div className="bg-slate-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
                   <p className="flex justify-between font-semibold border-b border-gray-200 pb-2 mb-2">
                     <span>Konsultacja:</span> <span>od 230 zł</span>
                   </p>
-                  <p className="text-xs text-gray-500 mt-1 italic">Kontakt tel. w celu ustalenia terminu.</p>
+                  <p className="text-xs text-slate-600 mt-1 italic">Kontakt tel. w celu ustalenia terminu.</p>
                 </div>
               </div>
 
-              <div className="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
+              <div className="border border-slate-200 p-6 rounded-2xl bg-white shadow-sm hover:shadow-lg transition flex flex-col h-full">
                 <p className="text-blue-600 font-bold text-sm uppercase tracking-wider mb-2">Ginekologia</p>
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-4 leading-tight">dr Katarzyna Bojanowska</h3>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
+                <div className="bg-slate-50 rounded-lg p-3 text-sm text-gray-700 mt-auto">
                   <p className="flex justify-between font-semibold border-b border-gray-200 pb-2 mb-2">
                     <span>Konsultacja:</span> <span>od 250 zł</span>
                   </p>
-                  <p className="text-xs text-gray-500 mt-1 italic">Wizyta z możliwością badań USG.</p>
+                  <p className="text-xs text-slate-600 mt-1 italic">Wizyta z możliwością badań USG.</p>
                 </div>
               </div>
 
-              <div className="border border-gray-100 p-6 rounded-2xl bg-[#21135E] shadow-sm hover:shadow-lg transition flex flex-col justify-center items-center text-center h-full">
+              <div className="border border-slate-200 p-6 rounded-2xl bg-[#21135E] shadow-sm hover:shadow-lg transition flex flex-col justify-center items-center text-center h-full">
                 <h3 className="text-xl font-bold text-white mb-2">I wielu innych...</h3>
                 <p className="text-blue-200 text-sm mb-4">Dermatolodzy, radiolodzy, urolodzy, dietetycy.</p>
                 <a href="tel:618751908" className="px-6 py-2 bg-white text-[#21135E] font-bold rounded-lg text-sm">
@@ -264,9 +264,9 @@ export default function SzczepankowoPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col justify-center h-full">
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 flex flex-col justify-center h-full">
             <h3 className="font-bold text-gray-900 mb-3 text-xl">Jak zostać naszym pacjentem na NFZ?</h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-slate-700 mb-6">
               Aby korzystać z bezpłatnej opieki lekarza rodzinnego w ramach NFZ, wystarczy złożyć deklarację wyboru lekarza i pielęgniarki POZ w naszej rejestracji.
             </p>
             <button className="w-full border-2 border-[#21135E] text-[#21135E] font-bold py-3 rounded-lg hover:bg-[#21135E] hover:text-white transition mt-auto">
