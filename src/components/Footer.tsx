@@ -3,12 +3,11 @@ import Link from "next/link";
 const linki = [
   { href: "/recepty", label: "Recepty online" },
   { href: "/cennik", label: "Cennik" },
-  { href: "/szkola-rodzenia", label: "Szkoła rodzenia" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#21135E] text-blue-100">
+    <footer className="mt-auto bg-[#21135E] text-blue-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-3">
         <div>
           <p className="text-white text-xl font-bold mb-2">Admedica</p>
@@ -30,6 +29,9 @@ export default function Footer() {
               <Link href="/szczepankowo" className="hover:text-white transition-colors">
                 <span className="block font-medium text-white">Admedica Szczepankowo</span>
                 ul. Szczepankowo 94a, Poznań
+              </Link>
+              <Link href="/szkola-rodzenia" className="mt-1.5 inline-block text-xs underline underline-offset-2 hover:text-white transition-colors">
+                Szkoła rodzenia (tylko Szczepankowo)
               </Link>
             </li>
           </ul>

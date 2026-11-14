@@ -3,10 +3,10 @@ import { ArrowLeftIcon, ArrowRightIcon, IconBadge, MapPinIcon, PhoneIcon, PillIc
 
 export default function BohaterowPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pb-20">
+    <main className="min-h-screen bg-slate-100 pb-20">
       
       {/* Nagłówek placówki */}
-      <div className="bg-[#21135E] text-white py-16">
+      <div className="bg-gradient-to-b from-[#21135E] to-[#33218a] text-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block bg-blue-500/20 text-blue-100 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wider mb-4">
             TYLKO NFZ
@@ -26,17 +26,17 @@ export default function BohaterowPage() {
           
           {/* Główny kontakt (2/3 szerokości) */}
           <div className="lg:col-span-2 space-y-8">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
               <IconBadge className="mr-3"><PhoneIcon className="h-6 w-6" /></IconBadge>
               Rejestracja Telefoniczna
             </h2>
-            <p className="text-gray-600 mb-8 text-lg">
+            <p className="text-slate-700 mb-8 text-lg">
               Rejestracja jest czynna od poniedziałku do piątku. Prosimy o przygotowanie numeru PESEL przed wykonaniem połączenia.
             </p>
             
-            <div className="bg-gray-50 border border-gray-100 rounded-xl p-8 text-center mb-8">
-              <p className="text-sm text-gray-500 uppercase font-bold tracking-wider mb-2">Główny numer POZ</p>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-8 text-center mb-8">
+              <p className="text-sm text-slate-600 uppercase font-bold tracking-wider mb-2">Główny numer POZ</p>
               <a href="tel:611234567" className="text-5xl font-extrabold text-[#21135E] hover:opacity-80 transition block">
                 61 123 45 67
               </a>
@@ -45,22 +45,22 @@ export default function BohaterowPage() {
             <div className="grid sm:grid-cols-2 gap-6">
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">Godziny otwarcia przychodni:</h3>
-                <ul className="space-y-1 text-gray-600">
-                  <li className="flex justify-between border-b border-gray-50 pb-1">
+                <ul className="space-y-1 text-slate-700">
+                  <li className="flex justify-between border-b border-slate-100 pb-1">
                     <span>Poniedziałek - Piątek</span> <span className="font-semibold text-[#21135E]">8:00 - 18:00</span>
                   </li>
-                  <li className="flex justify-between text-gray-400 pt-1">
+                  <li className="flex justify-between text-slate-500 pt-1">
                     <span>Sobota - Niedziela</span> <span>Nieczynne</span>
                   </li>
                 </ul>
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">Punkt Pobrań (Badania Krwi):</h3>
-                <ul className="space-y-1 text-gray-600">
-                  <li className="flex justify-between border-b border-gray-50 pb-1">
+                <ul className="space-y-1 text-slate-700">
+                  <li className="flex justify-between border-b border-slate-100 pb-1">
                     <span>Wtorek i Czwartek</span> <span className="font-semibold text-red-600">7:30 - 9:30</span>
                   </li>
-                  <li className="text-sm mt-2 text-gray-500 italic">
+                  <li className="text-sm mt-2 text-slate-600 italic">
                     *Tylko ze skierowaniem od naszego lekarza POZ.
                   </li>
                 </ul>
@@ -69,12 +69,12 @@ export default function BohaterowPage() {
           </div>
 
             {/* Recepta online – pod telefonem, żeby kolumny miały podobną wysokość */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <IconBadge><PillIcon className="h-6 w-6" /></IconBadge>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1 text-xl">Recepta online</h3>
-                  <p className="text-gray-600">
+                  <p className="text-slate-700">
                     Stały pacjent? Przedłuż receptę na leki stałe bez wizyty u lekarza.
                   </p>
                 </div>
@@ -101,9 +101,9 @@ export default function BohaterowPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
               <h3 className="font-bold text-gray-900 mb-3">Jak zostać naszym pacjentem?</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-slate-700 mb-4">
                 Aby korzystać z bezpłatnej opieki w ramach NFZ, wystarczy złożyć deklarację wyboru lekarza i pielęgniarki POZ w naszej rejestracji.
               </p>
               <button className="w-full border-2 border-[#21135E] text-[#21135E] font-bold py-2 rounded-lg hover:bg-[#21135E] hover:text-white transition">
